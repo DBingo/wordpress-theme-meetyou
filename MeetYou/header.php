@@ -14,9 +14,10 @@
     <div class="container">
         <!-- site header -->
         <header class="site-header">
-            <div class="logo"><a href="<?php echo home_url(); ?>"></a></div>
-            <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
-            <h5><?php bloginfo('description')?></h5>
+            <div class="logo">
+                <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
+                <h5><?php bloginfo('description')?></h5>
+            </div>
 
             <nav class="site-nav">
                 <?php
@@ -28,4 +29,4 @@
                 <?php wp_nav_menu( $args ); ?>
             </nav>
             
-        </header><!-- site header -->
+        </header>
