@@ -15,9 +15,9 @@
         <!-- site header -->
         <header class="site-header">
             <div class="logo">
-                <img src="<?php bloginfo('template_url');?>/MUED.png">
-                <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
-                <h5><?php bloginfo('description')?></h5>
+                <a href="<?php echo home_url(); ?>"><img src="<?php bloginfo('template_url');?>/assets/MUED.png"></a>
+                <h1><a href="<?php echo home_url(); ?>"><?php //bloginfo('name'); ?>美柚用户体验设计</a></h1>
+                <h5><?php //bloginfo('description')?>Meetyou User Experience Design</h5>
             </div>
 
             <nav class="site-nav">
