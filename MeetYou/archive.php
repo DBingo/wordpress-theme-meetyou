@@ -52,7 +52,7 @@ get_header();
                                 $output = '';
                                 if ($categories) {
                                     foreach ($categories as $category) {
-                                        $output .= '<span class="post-stamp"><a href="' . get_category_link($category->term_id) . '">' . $category->cat_name . '</a></span>' . $separator;
+                                        $output .= '<span class="post-stamp"><a href="' . get_category_link($category->term_id) . '">#' . $category->cat_name . '#</a></span>' . $separator;
                                     }
                                     echo trim($output, $separator);
                                 }

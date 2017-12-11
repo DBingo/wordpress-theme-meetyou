@@ -315,6 +315,7 @@ Header
     color: #212121;
     font-weight: normal;
     font-size: 0.75em;
+	font-family: "Segoe UI";
 }
 
 .site-nav {
@@ -491,6 +492,8 @@ Front Page
 	padding: 0 25px;
 	margin: 25px 0;
 	font-size: 2em;
+	height: 1.2em;
+	overflow: hidden;
 }
 .front-page .column .grid.text .excerpt {
 	padding: 0 25px;
@@ -499,6 +502,16 @@ Front Page
 	color: #999;
 	height: 10.5em;
 	overflow: hidden;
+}
+
+@media screen and ( min-width:1367px ) {
+	.front-page .column-container {
+		width: 90%;
+		margin: 0 auto;
+	}
+	.front-page .column .grid {
+		font-size: 14px;
+	}
 }
 
 @media screen and ( max-width:1366px ) {
@@ -576,6 +589,7 @@ Archive
 	padding-top: 37%;
 	overflow: hidden;
 	background-color: #efefef;
+	border-radius: 15px;
 }
 
 .archive .category-image img {
@@ -595,7 +609,15 @@ Archive
 	position: relative;
 	width: 33%;
 	padding-top: 33%;
+	margin-bottom: 2%;
 	overflow: hidden;
+}
+
+.archive .post:nth-child(3n) {
+	left: 1%;
+}
+.archive .post:nth-child(3n+2) {
+	left: 0.5%;
 }
 
 .archive .post .post-wrap {
@@ -604,9 +626,18 @@ Archive
 	height: 90%;
 	left: 5%;
 	top: 5%;
-	border: 1px solid #dedede;
+	border: 1px solid #e8e8e8;
 	border-radius: 10px;
-	box-shadow: 0 0 4px rgba(0,0,0,0.1);
+	/*box-shadow: 0 0 4px rgba(0,0,0,0.1);*/
+}
+
+.archive .post:nth-child(3n+1) .post-wrap {
+	left: 0;
+}
+
+.archive .post:nth-child(3n) .post-wrap {
+	left: auto;
+	right: 0;
 }
 
 .archive .post:hover .post-wrap {
@@ -667,13 +698,16 @@ Archive
 	text-overflow: ellipsis;
 	transition: color 0.3s ease-in;
 }
-.archive .post:hover h2 a {
+/*.archive .post:hover h2 a {
 	color: #ff5073;
-}
+}*/
 
 .archive .post:hover .post-thumbnail img {
 	transform: scale(1.1);
 	opacity: 0.7;
+}
+.archive .post:hover h2 {
+	color: #000;
 }
 
 .archive .post .post-metadata {
@@ -682,16 +716,22 @@ Archive
 }
 
 .archive .post .post-metadata a {
-	color: #ff5073;
+	color: #aaaaaa;
 	text-decoration: none;
 }
+
+.archive .post .post-metadata a:hover {
+	color: #444444;
+	text-decoration: underline;
+}
+
 .archive .post .post-stamp {
 	margin-right: 10px;
 }
 
 .archive .post .post-excerpt {
 	overflow: hidden;
-	color: #aaa;
+	color: #999;
 	height: 6em;
 	line-height: 1.5em;
 	text-overflow: ellipsis;
