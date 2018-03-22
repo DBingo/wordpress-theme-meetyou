@@ -1,80 +1,109 @@
-<?php
+<?php get_header(); ?>
     
-get_header(); 
+    <?php if ( have_posts() ) :
 
-    if (is_category('user-interface')){ ?>
-        <div class="category-image">
-            <img src="<?php bloginfo('template_url');?>/assets/user-interface.png">
-        </div>
-    <?php } elseif (is_category('creative-ad')) { ?>
-        <div class="category-image">
-            <img src="<?php bloginfo('template_url');?>/assets/creative-ad.png">
-        </div>
-    <?php } elseif (is_category('user-research')) { ?>
-        <div class="category-image">
-            <img src="<?php bloginfo('template_url');?>/assets/user-research.png">
-        </div>
-    <?php } elseif (is_category('front-end')) { ?>
-        <div class="category-image">
-            <img src="<?php bloginfo('template_url');?>/assets/front-end.png">
-        </div>
-    <?php } else { ?>
-        <div class="category-image">
-            <img src="<?php bloginfo('template_url');?>/assets/meetued.png">
-        </div>
-    <?php } ?>
+        // loop the posts
+        $post_count = 0;
+        $post_array = array();
 
-    <div class="post-list">
+        while ( have_posts() ) : the_post(); 
+            // get link and title
+            $the_link = get_permalink();
+            $the_title = get_the_title();
 
-        <?php if ( have_posts() ) :
+            // get featured images array
+            if( class_exists('Dynamic_Featured_Image') ) {
+                global $dynamic_featured_image;
+                $featured_images = $dynamic_featured_image->get_featured_images( );
+            }
 
-            // loop the posts
+            switch ($post_count)
+            {
+                case 0:
+                $post_array[$post_count] = "<a target='_blank' href='$the_link'>
+                                <img src='". $featured_images[0][full] ."'>
+                                <!-- <div class='title'>$the_title</div> -->
+                            </a>";
+                break;
 
-            while ( have_posts() ) : the_post(); ?>
+                case 1:
+                case 3:
+                case 5:
+                case 9:
+                $post_array[$post_count] = "<div class='grid square'>
+                                <a target='_blank' href='$the_link'>
+                                    <img src='". $featured_images[1][full] ."'>
+                                    <div class='title'>$the_title</div>
+                                </a>
+                            </div>";
+                break;
 
-            <div class="post">
-                <div class="post-wrap">
-                    <!-- post thumbnail -->
-                    <div class="post-thumbnail">
-                        <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('small-thumbnail'); ?></a>
-                    </div>
+                case 2:
+                case 6:
+                case 7:
+                $post_array[$post_count] = "<div class='grid long'>
+                                <a target='_blank' href='$the_link'>
+                                    <img src='". $featured_images[2][full] ."'>
+                                    <div class='title whitecolor'>$the_title</div>
+                                </a>
+                            </div>";
+                break;
 
-                    <div class="post-info">
-                        <!-- the title -->
-                        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                case 4:
+                case 8:
+                $post_array[$post_count] = "<div class='grid square'>
+                                <a target='_blank' href='$the_link'>
+                                    <img src='". $featured_images[3][full] ."'>
+                                    <div class='title'>$the_title</div>
+                                </a>
+                            </div>";
+                break;
+                default:
+                break;
+            }
 
-                        <!-- posti info -->
-                        <div class="post-metadata">
-                            <!-- loop the post's categories -->
-                            <?php
-                                $categories = get_the_category();
-                                $separator = ' ';
-                                $output = '';
-                                if ($categories) {
-                                    foreach ($categories as $category) {
-                                        $output .= '<span class="post-stamp"><a href="' . get_category_link($category->term_id) . '">' . $category->cat_name . '</a></span>' . $separator;
-                                    }
-                                    echo trim($output, $separator);
-                                }
-                            ?>
-                            <!-- post's time -->
-                            <span class="post-time"><?php the_time('Y.m.d'); ?></span>
-                        </div>
+            $post_count++;
 
-                        <!-- the excerpt  -->
-                        <p class="post-excerpt"><?php echo get_the_excerpt(); ?></p>
-                    </div>
-                </div>
-            </div>
+        endwhile;
+        
+        if ($post_array[7] == null) {
+            $post_array[7] = '<div class="grid long">
+                                    <a target="_blank" href="https://youbaobao.meiyou.com/">
+                                        <img src="http://ued.meiyou.com/wp-content/uploads/2018/03/youbaobao.png">
+                                        <div class="title">有宝宝就用柚宝宝</div>
+                                    </a>
+                                </div>';
+        }
+        if ($post_array[8] == null) {
+            $post_array[8] = '<div class="grid square">
+                                    <a target="_blank" href="https://www.meiyou.com/">
+                                        <img src="http://ued.meiyou.com/wp-content/themes/MeetYou/assets/9.jpg">
+                                        <div class="title whitecolor"></div>
+                                    </a>
+                                </div>';
+        }
+        if ($post_array[9] == null) {
+            $post_array[9] = '<div class="grid square">
+                                    <a target="_blank" href="https://uedkit.meiyou.com/">
+                                        <img src="http://ued.meiyou.com/wp-content/themes/MeetYou/assets/ued.jpg">
+                                        <div class="title">Nice To MeetYou</div>
+                                    </a>
+                                </div>';
+        }
 
-            <?php endwhile;
-            
-            else :
-                echo '<p>no content found</p>';
+        $index_template = "<div class='front-page'>
+                                <div class='landscape-banner'>$post_array[0]</div>
+                                <div class='column-container'>
+                                    <div class='column'>$post_array[1]$post_array[4]$post_array[7] $post_array[1]$post_array[4]$post_array[7]</div>
+                                    <div class='column'>$post_array[2]$post_array[5]$post_array[8] $post_array[2]$post_array[5]$post_array[8]</div>
+                                    <div class='column'>$post_array[3]$post_array[6]$post_array[9] $post_array[3]$post_array[6]$post_array[9]</div>
+                                </div>
+                            </div>";
+        echo $index_template;
 
-            endif; ?>
-    </div>
+    else :
+        echo '<p>no content found</p>';
 
-<?php get_footer();
+    endif; ?>
 
-?>
+<?php get_footer(); ?>
