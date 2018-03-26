@@ -466,21 +466,35 @@ Front Page
 	height: auto;
 }
 
+
+.front-page .column .grid.square .titlecontainer,
+.front-page .column .grid.long .titlecontainer {
+	position: absolute;
+	width: 100%;
+	height: 90px;
+	bottom: 0;
+	background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+	opacity: 0;
+	transition: 1s opacity;
+}
+
+.front-page .column .grid.square:hover .titlecontainer,
+.front-page .column .grid.long:hover .titlecontainer {
+	opacity: 1;
+}
+
 .front-page .column .grid.square .title,
 .front-page .column .grid.long .title {
 	position: absolute;
 	width: 90%;
 	left: 5%;
 	text-align: center;
-
-	bottom: 30px;
+	color: #ffffff;
+	bottom: 20px;
 	font-size: 20px;
 	height: 30px;
 	line-height: 1.5;
 	overflow: hidden;
-}
-.front-page .column .grid .title.whitecolor {
-	color: #ffffff;
 }
 
 .front-page .column .grid.text .tag {
@@ -529,7 +543,6 @@ Front Page
 
 	.front-page .column .grid.square .title,
 	.front-page .column .grid.long .title {
-		bottom: 20px;
 		font-size: 16px;
 		height: 24px;
 	}
