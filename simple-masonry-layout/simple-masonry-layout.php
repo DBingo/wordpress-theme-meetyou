@@ -35,13 +35,13 @@ function simple_masonry_enqueue_scripts()
 
     global $post;
 
-    if( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'simple_masonry') ) {
+    if( is_home() || is_category() ) {  // 插件需要的文件，改成首页和分类页再引入
 
         	wp_register_style( 'sm-style', plugin_dir_url( __FILE__ ) . 'css/sm-style.css');
 
             wp_register_style( 'darkbox-style', plugin_dir_url( __FILE__ ) . 'css/darkbox.css');
 
-            wp_register_style( 'font-awesome', ("http:////netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"));
+            wp_register_style( 'font-awesome', ("http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"));
 
             wp_enqueue_style( 'sm-style');
 

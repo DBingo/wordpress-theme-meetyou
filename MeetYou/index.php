@@ -105,9 +105,9 @@
         $index_template = "<div class='front-page'>
                                 <div class='landscape-banner'>$post_array[0]</div>
                                 <div class='column-container'>
-                                    <div class='column'>$post_array[1]$post_array[4]$post_array[7] $post_array[1]$post_array[4]$post_array[7]</div>
-                                    <div class='column'>$post_array[2]$post_array[5]$post_array[8] $post_array[2]$post_array[5]$post_array[8]</div>
-                                    <div class='column'>$post_array[3]$post_array[6]$post_array[9] $post_array[3]$post_array[6]$post_array[9]</div>
+                                    <div class='column'>$post_array[1]$post_array[4]$post_array[7]</div>
+                                    <div class='column'>$post_array[2]$post_array[5]$post_array[8]</div>
+                                    <div class='column'>$post_array[3]$post_array[6]$post_array[9]</div>
                                 </div>
                             </div>";
         echo $index_template;
